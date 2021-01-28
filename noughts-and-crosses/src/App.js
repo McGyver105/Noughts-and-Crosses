@@ -31,7 +31,7 @@ class App extends React.Component {
           <PlayerNames xNeedsName={this.state.playerX} oNeedsName={this.state.playerO} handleSubmit={this.handleSubmit} handleTyping={this.handleTyping} namesHaveBeenEntered={this.namesHaveBeenEntered} valueX={this.state.playerXname} valueO={this.state.playerOname}></PlayerNames>
         </h2>
         <h3>
-          <p>Player X: {this.state.playerXname}      Player O: {this.state.playerOname}</p>
+          <p>Player X: {this.state.playerXname} - vs - Player O: {this.state.playerOname}</p>
         </h3>
         <h2>
           Game status: {this.state.gameStatus}
