@@ -3,8 +3,8 @@
 [X] Copy this list into your project
 [X] Outline functionality of your app
 [X] Draw what the user will see
-[ ] Break out components from your sketch
-[ ] Name your components
+[X] Break out components from your sketch
+[X] Name your components
 [ ] Draw component hierarchy
 [ ] Label where you will require functions that change state
 [ ] Label where you will require data

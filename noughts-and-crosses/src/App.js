@@ -1,13 +1,67 @@
 import './App.css';
 import React from "react";
+import XOButton from './Components.js/XOButton'
 
 class App extends React.Component {
+  state = {
+    buttonOne: { notPressed: true, letter: '' },
+    buttonTwo: { notPressed: true, letter: '' },
+    buttonThree: { notPressed: true, letter: '' },
+    buttonFour: { notPressed: true, letter: '' },
+    buttonFive: { notPressed: true, letter: '' },
+    buttonSix: { notPressed: true, letter: '' },
+    buttonSeven: { notPressed: true, letter: '' },
+    buttonEight: { notPressed: true, letter: '' },
+    buttonNine: { notPressed: true, letter: '' }
+  }
   render() {
     return (
       <div className="App">
         <h1>Noughts and Crosses</h1>
+        <h2>
+          Player name inputs will go here
+        </h2>
+        <h2>
+          Player names will be displayed here
+        </h2>
+        <h2>
+          Game status will be displayed here
+        </h2>
+        <h2>
+          The score will be displayed here
+        </h2>
+        <h2>
+          Along with a button to reset the scores
+        </h2>
+        <table className="gameBoard">
+          <tbody>
+          <tr>
+          <th colSpan="3">Game Board</th>
+          </tr>
+         <tr>
+              <XOButton buttonInfo={this.state.buttonOne} handleClick={this.handleClick} id="buttonOne"/>
+              <XOButton buttonInfo={this.state.buttonTwo} handleClick={this.handleClick} id="buttonTwo"/>
+              <XOButton buttonInfo={this.state.buttonThree} handleClick={this.handleClick} id="buttonThree"/>
+          </tr>
+          <tr>
+              <XOButton buttonInfo={this.state.buttonFour} handleClick={this.handleClick} id="buttonFour"/>
+              <XOButton buttonInfo={this.state.buttonFive} handleClick={this.handleClick} id="buttonFive"/>
+              <XOButton buttonInfo={this.state.buttonSix} handleClick={this.handleClick} id="buttonSix"/>
+          </tr>
+          <tr>
+              <XOButton buttonInfo={this.state.buttonSeven} handleClick={this.handleClick} id="buttonSeven"/>
+              <XOButton buttonInfo={this.state.buttonEight} handleClick={this.handleClick} id="buttonEight"/>
+              <XOButton buttonInfo={this.state.buttonNine} handleClick={this.handleClick} id="buttonNine"/>
+            </tr>
+            </tbody>
+        </table>
       </div>
     );
+  }
+  handleClick = (event, id) => {
+    this.setState(() => {
+      return { [id]: { notPressed: false, letter: event.target.innerText } };
+    });
   }
 }
 
