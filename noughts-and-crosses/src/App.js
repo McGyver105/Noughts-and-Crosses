@@ -2,6 +2,7 @@ import './App.css';
 import React from "react";
 import XOButton from './Components.js/XOButton'
 import PlayerNames from './Components.js/PlayerNames'
+import WinnerButton from './Components.js/WinnerButton';
 
 class App extends React.Component {
   state = {
@@ -18,6 +19,8 @@ class App extends React.Component {
     playerO: true,
     playerXname: '',
     playerOname: '',
+    playerXscore: 0,
+    playerOscore: 0,
     gameStatus: 'please enter your names'
   }
   render () {
@@ -28,18 +31,18 @@ class App extends React.Component {
           <PlayerNames xNeedsName={this.state.playerX} oNeedsName={this.state.playerO} handleSubmit={this.handleSubmit} handleTyping={this.handleTyping} namesHaveBeenEntered={this.namesHaveBeenEntered} valueX={this.state.playerXname} valueO={this.state.playerOname}></PlayerNames>
         </h2>
         <h3>
-          <p>Player X: {this.state.playerXname}</p>
-          <p>Player O: {this.state.playerOname}</p>
+          <p>Player X: {this.state.playerXname}      Player O: {this.state.playerOname}</p>
         </h3>
         <h2>
           Game status: {this.state.gameStatus}
         </h2>
-        <h2>
-          The score will be displayed here
+        <h2>Score
+          <p>{this.state.playerXname}: {this.state.playerXscore}  {this.state.playerOname}: {this.state.playerOscore}</p>
         </h2>
         <h2>
-          Along with a button to reset the scores
+          <WinnerButton handleWinner={this.handleWinner} playerX='playerXscore' playerO='playerOscore' playerXname={this.state.playerXname} playerOname={this.state.playerOname}></WinnerButton>
         </h2>
+        <h4>reset board button in development</h4>
         <table className="gameBoard">
           <tbody>
           <tr>
@@ -67,23 +70,28 @@ class App extends React.Component {
   }
   handleClick = (event, id) => {
     this.setState(() => {
-      return { [id]: { notPressed: false, letter: event.target.innerText } };
+      return { [id]: { notPressed: false, letter: event.target.innerText }, gameStatus: '**play has commenced**' };
     });
   }
   handleSubmit = (event, name) => {
     event.preventDefault()
-    this.setState(currentState => {
+    this.setState(() => {
       return { [name]: false };
     })
   }
   handleTyping = (event, name) => {
-    this.setState(currentState => {
+    this.setState(() => {
       return { [name]: event.target.value };
     });
   }
-  namesHaveBeenEntered = (event) => {
+  namesHaveBeenEntered = () => {
     this.setState(() => {
       return { gameStatus: '***names have been entered***'}
+    })
+  }
+  handleWinner = (score, name) => {
+    this.setState((currentState) => {
+      return { [score]: currentState[score] + 1, gameStatus: `${name} is the winner` };
     })
   }
 }
