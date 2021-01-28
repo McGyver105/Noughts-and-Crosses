@@ -7,7 +7,7 @@ const PlayerNames = (props) => {
                 <label>Player X Name:
                 <input type="text" placeholder="player X name" onChange={(event) => {
                         props.handleTyping(event, "playerXname")
-                }}></input>
+                }} value={props.valueX}></input>
                 </label>
             </form>
         : props.oNeedsName ?
@@ -17,8 +17,8 @@ const PlayerNames = (props) => {
             }}>
                 <label>Player O Name:
                 <input type="text" placeholder="player O name" onChange={(event) => {
-                        props.handleTyping(event, "playerOname")
-                }}></input>
+                        props.handleTyping(event, "playerOname") 
+                }} value={props.valueO}></input>
                 </label>
             </form>
         : null

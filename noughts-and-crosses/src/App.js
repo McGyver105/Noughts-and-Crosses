@@ -25,7 +25,7 @@ class App extends React.Component {
       <div className="App">
         <h1>Noughts and Crosses</h1>
         <h2>
-          <PlayerNames xNeedsName={this.state.playerX} oNeedsName={this.state.playerO} handleSubmit={this.handleSubmit} handleTyping={this.handleTyping} namesHaveBeenEntered={this.namesHaveBeenEntered}></PlayerNames>
+          <PlayerNames xNeedsName={this.state.playerX} oNeedsName={this.state.playerO} handleSubmit={this.handleSubmit} handleTyping={this.handleTyping} namesHaveBeenEntered={this.namesHaveBeenEntered} valueX={this.state.playerXname} valueO={this.state.playerOname}></PlayerNames>
         </h2>
         <h3>
           <p>Player X: {this.state.playerXname}</p>
