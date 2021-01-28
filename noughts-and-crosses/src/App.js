@@ -1,6 +1,7 @@
 import './App.css';
 import React from "react";
 import XOButton from './Components.js/XOButton'
+import PlayerNames from './Components.js/PlayerNames'
 
 class App extends React.Component {
   state = {
@@ -12,20 +13,26 @@ class App extends React.Component {
     buttonSix: { notPressed: true, letter: '' },
     buttonSeven: { notPressed: true, letter: '' },
     buttonEight: { notPressed: true, letter: '' },
-    buttonNine: { notPressed: true, letter: '' }
+    buttonNine: { notPressed: true, letter: '' },
+    playerX: true,
+    playerO: true,
+    playerXname: '',
+    playerOname: '',
+    gameStatus: 'please enter your names'
   }
-  render() {
+  render () {
     return (
       <div className="App">
         <h1>Noughts and Crosses</h1>
         <h2>
-          Player name inputs will go here
+          <PlayerNames xNeedsName={this.state.playerX} oNeedsName={this.state.playerO} handleSubmit={this.handleSubmit} handleTyping={this.handleTyping} namesHaveBeenEntered={this.namesHaveBeenEntered}></PlayerNames>
         </h2>
+        <h3>
+          <p>Player X: {this.state.playerXname}</p>
+          <p>Player O: {this.state.playerOname}</p>
+        </h3>
         <h2>
-          Player names will be displayed here
-        </h2>
-        <h2>
-          Game status will be displayed here
+          Game status: {this.state.gameStatus}
         </h2>
         <h2>
           The score will be displayed here
@@ -63,45 +70,22 @@ class App extends React.Component {
       return { [id]: { notPressed: false, letter: event.target.innerText } };
     });
   }
+  handleSubmit = (event, name) => {
+    event.preventDefault()
+    this.setState(currentState => {
+      return { [name]: false };
+    })
+  }
+  handleTyping = (event, name) => {
+    this.setState(currentState => {
+      return { [name]: event.target.value };
+    });
+  }
+  namesHaveBeenEntered = (event) => {
+    this.setState(() => {
+      return { gameStatus: '***names have been entered***'}
+    })
+  }
 }
 
 export default App;
-
-
-/*
-Planning section
-
-This app will display a 3 by 3 grid somehow (need to investigate). possibly use a table with empty headers
-https://www.w3schools.com/html/html_tables.asp
-Each box will have a nought and cross button
-clicking the button will make that choice appear in the box on the grid
-Need to somehow check if there are 3 in a row. If so, something will indicate that you won.
-Add an extra button to play again.
-
-Advanced features will be:
-player names input
-a score counter by each player
-reset scores button
-*/
-
-/*
-App -
-contains a title - n & cs
-player names inputs & button (adv)
-list of players(adv)
-
-Step 1:
-table 3x3
-each <td> tag has a XO component
-the XO components have buttons to click
-  clicking the button either assigns an X or O as a value
-  clicking the button also removes both buttons, so you can't change your answer
- 
-Step 2:
-Add something that fires whenever the button is pressed. It checks is certain combinations of buttons have the right values, then changes the game status from in progress to winner is X or O.
-
-Step 3:
-Add the usernames input and display.
-Links each person to X or O.
-Links the game status winning message to the user
-*/
