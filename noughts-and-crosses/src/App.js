@@ -26,14 +26,18 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    console.log('fetching')
     this.fetchScore();
   }
 
   render () {
     return (
       <div className="App">
-        <h1>Noughts and Crosses</h1>
+        <header>
+          <img src="https://ichef.bbci.co.uk/images/ic/640x360/p01hcbq8.jpg" alt="XO" className="titleImage"></img>
+          <h1>Noughts and Crosses</h1>
+          <img src="https://ichef.bbci.co.uk/images/ic/640x360/p01hcbq8.jpg" alt="XO" className="titleImage"></img>
+        </header>
+        
         <h2>
           <PlayerNames xNeedsName={this.state.playerX} oNeedsName={this.state.playerO} handleSubmit={this.handleSubmit} handleTyping={this.handleTyping} namesHaveBeenEntered={this.namesHaveBeenEntered} valueX={this.state.playerXname} valueO={this.state.playerOname}></PlayerNames>
         </h2>

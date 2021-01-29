@@ -32,6 +32,16 @@ td {
   position: relative;
 }
 
+h1 {
+  display: inline;
+  text-align: center;
+  padding: 20px;
+}
+
+.titleImage {
+  width: 100px;
+}
+
 .xoButton {
   top: 90%;
   height: 20px;
