@@ -85,9 +85,9 @@ class App extends React.Component {
       const winner = this.checkWinner(this.state);
       if (winner) {
         this.handleWinner(`${winner}score`, `${this.state[winner + 'name']}`, true);
-        this.setState((currentState) => {
-          return currentState.buttonsDisabled = true
-        })
+        this.setState(() => {
+          return { buttonsDisabled: true };
+        });
       }
     });
   }
