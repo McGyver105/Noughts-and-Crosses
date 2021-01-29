@@ -2,7 +2,6 @@ import './App.css';
 import React from "react";
 import XOButton from './Components.js/XOButton'
 import PlayerNames from './Components.js/PlayerNames'
-import WinnerButton from './Components.js/WinnerButton';
 import ResetButton from './Components.js/ResetButton';
 
 class App extends React.Component {
@@ -22,7 +21,8 @@ class App extends React.Component {
     playerOname: '',
     playerXscore: 0,
     playerOscore: 0,
-    gameStatus: 'please enter your names'
+    gameStatus: 'please enter your names',
+    buttonsDisabled: false
   }
 
   componentDidMount () {
@@ -50,9 +50,6 @@ class App extends React.Component {
         <h2>Score
           <p>{this.state.playerXname}: {this.state.playerXscore}  {this.state.playerOname}: {this.state.playerOscore}</p>
         </h2>
-        <h2>
-          <WinnerButton handleWinner={this.handleWinner} playerX='playerXscore' playerO='playerOscore' playerXname={this.state.playerXname} playerOname={this.state.playerOname}></WinnerButton>
-        </h2>
         <h4>
           <ResetButton handleReset={this.handleReset} handleSave={this.handleSave} handleClearSave={this.handleClearSave}></ResetButton>
         </h4>
@@ -62,19 +59,19 @@ class App extends React.Component {
           <th colSpan="3">Game Board</th>
           </tr>
          <tr>
-              <XOButton buttonInfo={this.state.buttonOne} handleClick={this.handleClick} id="buttonOne"/>
-              <XOButton buttonInfo={this.state.buttonTwo} handleClick={this.handleClick} id="buttonTwo"/>
-              <XOButton buttonInfo={this.state.buttonThree} handleClick={this.handleClick} id="buttonThree"/>
+              <XOButton buttonInfo={this.state.buttonOne} handleClick={this.handleClick} id="buttonOne" disabled={this.state.buttonsDisabled}/>
+              <XOButton buttonInfo={this.state.buttonTwo} handleClick={this.handleClick} id="buttonTwo" disabled={this.state.buttonsDisabled}/>
+              <XOButton buttonInfo={this.state.buttonThree} handleClick={this.handleClick} id="buttonThree" disabled={this.state.buttonsDisabled}/>
           </tr>
           <tr>
-              <XOButton buttonInfo={this.state.buttonFour} handleClick={this.handleClick} id="buttonFour"/>
-              <XOButton buttonInfo={this.state.buttonFive} handleClick={this.handleClick} id="buttonFive"/>
-              <XOButton buttonInfo={this.state.buttonSix} handleClick={this.handleClick} id="buttonSix"/>
+              <XOButton buttonInfo={this.state.buttonFour} handleClick={this.handleClick} id="buttonFour" disabled={this.state.buttonsDisabled}/>
+              <XOButton buttonInfo={this.state.buttonFive} handleClick={this.handleClick} id="buttonFive" disabled={this.state.buttonsDisabled}/>
+              <XOButton buttonInfo={this.state.buttonSix} handleClick={this.handleClick} id="buttonSix" disabled={this.state.buttonsDisabled}/>
           </tr>
           <tr>
-              <XOButton buttonInfo={this.state.buttonSeven} handleClick={this.handleClick} id="buttonSeven"/>
-              <XOButton buttonInfo={this.state.buttonEight} handleClick={this.handleClick} id="buttonEight"/>
-              <XOButton buttonInfo={this.state.buttonNine} handleClick={this.handleClick} id="buttonNine"/>
+              <XOButton buttonInfo={this.state.buttonSeven} handleClick={this.handleClick} id="buttonSeven" disabled={this.state.buttonsDisabled}/>
+              <XOButton buttonInfo={this.state.buttonEight} handleClick={this.handleClick} id="buttonEight" disabled={this.state.buttonsDisabled}/>
+              <XOButton buttonInfo={this.state.buttonNine} handleClick={this.handleClick} id="buttonNine" disabled={this.state.buttonsDisabled}/>
             </tr>
             </tbody>
         </table>
@@ -87,7 +84,10 @@ class App extends React.Component {
     }, () => {
       const winner = this.checkWinner(this.state);
       if (winner) {
-        this.handleWinner(`${winner}score`, `${this.state[winner + 'name']}`);
+        this.handleWinner(`${winner}score`, `${this.state[winner + 'name']}`, true);
+        this.setState((currentState) => {
+          currentState.buttonsDisabled = true;
+        })
       }
     });
   }
@@ -107,7 +107,7 @@ class App extends React.Component {
       return { gameStatus: '***names have been entered***'}
     })
   }
-  handleWinner = (score, name) => {
+  handleWinner = (score, name, done = false) => {
     this.setState((currentState) => {
       return { [score]: currentState[score] + 1, gameStatus: `${name} is the winner` };
     })
@@ -124,7 +124,8 @@ class App extends React.Component {
         buttonSeven: { notPressed: true, letter: '' },
         buttonEight: { notPressed: true, letter: '' },
         buttonNine: { notPressed: true, letter: '' },
-        gameStatus: 'get ready'
+        gameStatus: 'get ready',
+        buttonsDisabled: false
       }
     })
   }

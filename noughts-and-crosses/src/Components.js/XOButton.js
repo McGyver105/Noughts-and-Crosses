@@ -3,10 +3,10 @@ const XOButton = (props) => {
         <td id="box1">
             {props.buttonInfo.notPressed ? <div>
                 <section>
-                    <button className="xoButton" onClick={(event) => {
+                    <button className="xoButton" disabled={props.disabled} onClick={(event) => {
                         props.handleClick(event, props.id)
                     }}>X</button>
-                    <button className="xoButton" onClick={(event) => {
+                    <button className="xoButton" disabled={props.disabled} onClick={(event) => {
                         props.handleClick(event, props.id)
                     }}>O</button>
                 </section>
