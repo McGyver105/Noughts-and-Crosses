@@ -22,7 +22,7 @@ class App extends React.Component {
     playerXscore: 0,
     playerOscore: 0,
     gameStatus: 'please enter your names',
-    buttonsDisabled: false
+    buttonsDisabled: true
   }
 
   componentDidMount () {
@@ -104,7 +104,7 @@ class App extends React.Component {
   }
   namesHaveBeenEntered = () => {
     this.setState(() => {
-      return { gameStatus: '***names have been entered***'}
+      return { gameStatus: '***names have been entered***', buttonsDisabled: false}
     })
   }
   handleWinner = (score, name, done = false) => {
