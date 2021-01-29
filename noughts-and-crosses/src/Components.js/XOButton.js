@@ -2,7 +2,7 @@ const XOButton = (props) => {
     return (
         <td id="box1">
             {props.buttonInfo.notPressed ? <div>
-                <section>
+                <section className="xoHover">
                     <button className="xoButton" disabled={props.disabled} onClick={(event) => {
                         props.handleClick(event, props.id)
                     }}>X</button>

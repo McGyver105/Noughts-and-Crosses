@@ -1,6 +1,6 @@
 const ResetButton = (props) => {
     return (
-        <section>
+        <section className="playAgain">
             <button onClick={props.handleReset}>
                 Play Again
             </button>

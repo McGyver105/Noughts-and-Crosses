@@ -38,6 +38,11 @@ h1 {
   padding: 20px;
 }
 
+input {
+  padding: 5px;
+  font-size: 20px;
+}
+
 .titleImage {
   width: 100px;
 }
@@ -57,4 +62,12 @@ h1 {
 .XOletters {
   font-size: 50px;
   margin: 0%;
+}
+
+.playAgain :hover {
+  background-color: lightgreen;
+}
+
+.xoHover :hover {
+  background-color: gold;
 }

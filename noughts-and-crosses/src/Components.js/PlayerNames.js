@@ -5,7 +5,7 @@ const PlayerNames = (props) => {
                 props.handleSubmit(event, "playerX")
             }}>
                 <label>Player X Name:
-                <input type="text" placeholder="player X name" onChange={(event) => {
+                <input type="text" placeholder="enter name" onChange={(event) => {
                         props.handleTyping(event, "playerXname")
                 }} value={props.valueX}></input>
                 </label>
@@ -16,7 +16,7 @@ const PlayerNames = (props) => {
                     props.namesHaveBeenEntered()
             }}>
                 <label>Player O Name:
-                <input type="text" placeholder="player O name" onChange={(event) => {
+                <input type="text" placeholder="enter name" onChange={(event) => {
                         props.handleTyping(event, "playerOname") 
                 }} value={props.valueO}></input>
                 </label>

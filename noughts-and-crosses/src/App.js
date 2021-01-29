@@ -91,27 +91,32 @@ class App extends React.Component {
       }
     });
   }
+  
   handleSubmit = (event, name) => {
     event.preventDefault()
     this.setState(() => {
       return { [name]: false };
     })
   }
+
   handleTyping = (event, name) => {
     this.setState(() => {
       return { [name]: event.target.value };
     });
   }
+
   namesHaveBeenEntered = () => {
     this.setState(() => {
       return { gameStatus: '***names have been entered***', buttonsDisabled: false}
     })
   }
-  handleWinner = (score, name, done = false) => {
+
+  handleWinner = (score, name) => {
     this.setState((currentState) => {
       return { [score]: currentState[score] + 1, gameStatus: `${name} is the winner` };
     })
   }
+
   handleReset = () => {
     this.setState(() => {
       return {
