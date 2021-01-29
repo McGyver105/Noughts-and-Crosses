@@ -78,15 +78,15 @@ class App extends React.Component {
       </div>
     );
   }
+  
   handleClick = (event, id) => {
     this.setState(() => {
       return { [id]: { notPressed: false, letter: event.target.innerText }, gameStatus: '**play has commenced**' };
     }, () => {
       const winner = this.checkWinner(this.state);
       if (winner) {
-        this.handleWinner(`${winner}score`, `${this.state[winner + 'name']}`, true);
-        this.setState(() => {
-          return { buttonsDisabled: true };
+        this.setState((currentState) => {
+          return { buttonsDisabled: true, [`${winner}score`]: currentState[`${winner}score`] + 1, gameStatus: `${this.state[winner + 'name']} is the winner` };
         });
       }
     });
@@ -108,12 +108,6 @@ class App extends React.Component {
   namesHaveBeenEntered = () => {
     this.setState(() => {
       return { gameStatus: '***names have been entered***', buttonsDisabled: false}
-    })
-  }
-
-  handleWinner = (score, name) => {
-    this.setState((currentState) => {
-      return { [score]: currentState[score] + 1, gameStatus: `${name} is the winner` };
     })
   }
 
