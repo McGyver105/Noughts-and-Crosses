@@ -3,6 +3,7 @@ import React from "react";
 import XOButton from './Components.js/XOButton'
 import PlayerNames from './Components.js/PlayerNames'
 import WinnerButton from './Components.js/WinnerButton';
+import ResetButton from './Components.js/ResetButton';
 
 class App extends React.Component {
   state = {
@@ -42,7 +43,9 @@ class App extends React.Component {
         <h2>
           <WinnerButton handleWinner={this.handleWinner} playerX='playerXscore' playerO='playerOscore' playerXname={this.state.playerXname} playerOname={this.state.playerOname}></WinnerButton>
         </h2>
-        <h4>reset board button in development</h4>
+        <h4>
+          <ResetButton handleReset={this.handleReset}></ResetButton>
+        </h4>
         <table className="gameBoard">
           <tbody>
           <tr>
@@ -92,6 +95,25 @@ class App extends React.Component {
   handleWinner = (score, name) => {
     this.setState((currentState) => {
       return { [score]: currentState[score] + 1, gameStatus: `${name} is the winner` };
+    })
+  }
+  handleReset = () => {
+    this.setState(() => {
+      return {
+        playerX: true,
+        playerO: true,
+        playerXname: '',
+        playerOname: '',
+        buttonOne: { notPressed: true, letter: '' },
+        buttonTwo: { notPressed: true, letter: '' },
+        buttonThree: { notPressed: true, letter: '' },
+        buttonFour: { notPressed: true, letter: '' },
+        buttonFive: { notPressed: true, letter: '' },
+        buttonSix: { notPressed: true, letter: '' },
+        buttonSeven: { notPressed: true, letter: '' },
+        buttonEight: { notPressed: true, letter: '' },
+        buttonNine: { notPressed: true, letter: '' }
+      }
     })
   }
 }
