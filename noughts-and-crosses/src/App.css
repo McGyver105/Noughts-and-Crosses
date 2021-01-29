@@ -71,3 +71,9 @@ input {
 .xoHover :hover {
   background-color: gold;
 }
+
+.scoreboard {
+  border-radius: 5px;
+  width: fit-content;
+  margin: auto;
+}
