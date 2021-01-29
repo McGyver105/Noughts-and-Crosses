@@ -24,6 +24,12 @@ class App extends React.Component {
     playerOscore: 0,
     gameStatus: 'please enter your names'
   }
+
+  componentDidMount () {
+    console.log('fetching')
+    this.fetchScore();
+  }
+
   render () {
     return (
       <div className="App">
@@ -44,7 +50,7 @@ class App extends React.Component {
           <WinnerButton handleWinner={this.handleWinner} playerX='playerXscore' playerO='playerOscore' playerXname={this.state.playerXname} playerOname={this.state.playerOname}></WinnerButton>
         </h2>
         <h4>
-          <ResetButton handleReset={this.handleReset}></ResetButton>
+          <ResetButton handleReset={this.handleReset} handleSave={this.handleSave} handleClearSave={this.handleClearSave}></ResetButton>
         </h4>
         <table className="gameBoard">
           <tbody>
@@ -111,6 +117,22 @@ class App extends React.Component {
         buttonNine: { notPressed: true, letter: '' }
       }
     })
+  }
+
+  handleSave = () => {
+    localStorage.setItem("gameScore", JSON.stringify(this.state));
+  };
+  
+  handleClearSave = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
+  fetchScore = () => {
+    const score = JSON.parse(localStorage.getItem("gameScore"))
+    this.setState(() => {
+      return { ...score };
+    });
   }
 }
 
