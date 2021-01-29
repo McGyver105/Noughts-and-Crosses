@@ -84,6 +84,11 @@ class App extends React.Component {
   handleClick = (event, id) => {
     this.setState(() => {
       return { [id]: { notPressed: false, letter: event.target.innerText }, gameStatus: '**play has commenced**' };
+    }, () => {
+      const winner = this.checkWinner(this.state);
+      if (winner) {
+        this.handleWinner(`${winner}score`, `${this.state[winner + 'name']}`);
+      }
     });
   }
   handleSubmit = (event, name) => {
@@ -118,7 +123,8 @@ class App extends React.Component {
         buttonSix: { notPressed: true, letter: '' },
         buttonSeven: { notPressed: true, letter: '' },
         buttonEight: { notPressed: true, letter: '' },
-        buttonNine: { notPressed: true, letter: '' }
+        buttonNine: { notPressed: true, letter: '' },
+        gameStatus: 'get ready'
       }
     })
   }
@@ -137,6 +143,28 @@ class App extends React.Component {
     this.setState(() => {
       return { ...score };
     });
+  }
+
+  checkWinner = (object) => {
+    const XRegex = /x/i
+    const ORegex = /o/i
+    if (XRegex.test(object.buttonOne.letter) && XRegex.test(object.buttonTwo.letter) && XRegex.test(object.buttonThree.letter)) return 'playerX';
+    if (ORegex.test(object.buttonOne.letter) && ORegex.test(object.buttonTwo.letter) && ORegex.test(object.buttonThree.letter)) return 'playerO';
+    if (XRegex.test(object.buttonOne.letter) && XRegex.test(object.buttonFour.letter) && XRegex.test(object.buttonSeven.letter)) return 'playerX';
+    if (ORegex.test(object.buttonOne.letter) && ORegex.test(object.buttonFour.letter) && ORegex.test(object.buttonSeven.letter)) return 'playerO';
+    if (XRegex.test(object.buttonOne.letter) && XRegex.test(object.buttonFive.letter) && XRegex.test(object.buttonNine.letter)) return 'playerX';
+    if (ORegex.test(object.buttonOne.letter) && ORegex.test(object.buttonFive.letter) && ORegex.test(object.buttonNine.letter)) return 'playerO';
+    if (XRegex.test(object.buttonSeven.letter) && XRegex.test(object.buttonFive.letter) && XRegex.test(object.buttonThree.letter)) return 'playerX';
+    if (ORegex.test(object.buttonSeven.letter) && ORegex.test(object.buttonFive.letter) && ORegex.test(object.buttonThree.letter)) return 'playerO';
+    if (XRegex.test(object.buttonSeven.letter) && XRegex.test(object.buttonEight.letter) && XRegex.test(object.buttonNine.letter)) return 'playerX';
+    if (ORegex.test(object.buttonSeven.letter) && ORegex.test(object.buttonEight.letter) && ORegex.test(object.buttonNine.letter)) return 'playerO';
+    if (XRegex.test(object.buttonThree.letter) && XRegex.test(object.buttonSix.letter) && XRegex.test(object.buttonNine.letter)) return 'playerX';
+    if (ORegex.test(object.buttonThree.letter) && ORegex.test(object.buttonSix.letter) && ORegex.test(object.buttonNine.letter)) return 'playerO';
+    if (XRegex.test(object.buttonFour.letter) && XRegex.test(object.buttonFive.letter) && XRegex.test(object.buttonSix.letter)) return 'playerX';
+    if (ORegex.test(object.buttonFour.letter) && ORegex.test(object.buttonFive.letter) && ORegex.test(object.buttonSix.letter)) return 'playerO';
+    if (XRegex.test(object.buttonTwo.letter) && XRegex.test(object.buttonFive.letter) && XRegex.test(object.buttonEight.letter)) return 'playerX';
+    if (ORegex.test(object.buttonTwo.letter) && ORegex.test(object.buttonFive.letter) && ORegex.test(object.buttonEight.letter)) return 'playerO';
+    return null;
   }
 }
 
