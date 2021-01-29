@@ -100,10 +100,6 @@ class App extends React.Component {
   handleReset = () => {
     this.setState(() => {
       return {
-        playerX: true,
-        playerO: true,
-        playerXname: '',
-        playerOname: '',
         buttonOne: { notPressed: true, letter: '' },
         buttonTwo: { notPressed: true, letter: '' },
         buttonThree: { notPressed: true, letter: '' },

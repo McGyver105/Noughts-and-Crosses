@@ -2,12 +2,22 @@
   text-align: center;
 }
 
+body {
+  background-image: url("https://onlyvectorbackgrounds.com/wp-content/uploads/2018/09/Abstract-Ambient-Light-Background-Day-Blue.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 table {
   border: 1px solid black;
+  background-color: white;
   width: 60%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  color: black;
 }
 
 th {
